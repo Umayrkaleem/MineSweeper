@@ -47,7 +47,21 @@ public class MineSweeperTest {
         assertEquals(CellState.UNEXPOSED, minesweeper.getCellState(2, 3));
     }
 
+    @Test
+    void checkCorrectNumberOfMinesAreCreated() {
+        assertEquals(minesweeper.getMineTotal(), minesweeper.createMines());
+    }
 
+    @Test
+    void outOfRangeWhenCheckingAdjCellForMines(){
+        assertEquals(Boolean.FALSE, minesweeper.isValidBounds(-1, 7));
+        assertEquals(Boolean.FALSE, minesweeper.isValidBounds(7, -1));
+        assertEquals(Boolean.FALSE, minesweeper.isValidBounds(11, 7));
+        assertEquals(Boolean.FALSE, minesweeper.isValidBounds(-11, -11));
+        assertEquals(Boolean.FALSE, minesweeper.isValidBounds(7, -11));
+        assertEquals(Boolean.FALSE, minesweeper.isValidBounds(-11, 7));
+        assertEquals(Boolean.TRUE, minesweeper.isValidBounds(1, 3));
+    }
 
 
 }

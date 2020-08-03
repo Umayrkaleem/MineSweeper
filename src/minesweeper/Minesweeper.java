@@ -88,6 +88,10 @@ public class Minesweeper {
         return isValidBounds(row, col) && cellValues[row][col] == 0;
     }
 
+    public int getMineTotal(){
+        return nMINES;
+    }
+
     public CellState getCellState (int row, int column) {
         return cellStates[row][column];
     }
