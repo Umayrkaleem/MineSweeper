@@ -42,5 +42,12 @@ public class MineSweeperTest {
         assertEquals(CellState.UNEXPOSED, minesweeper.getCellState(0, 1));
     }
 
+    @Test
+    void initialCellStateIsUnExposed() {
+        assertEquals(CellState.UNEXPOSED, minesweeper.getCellState(2, 3));
+    }
+
+
+
 
 }
