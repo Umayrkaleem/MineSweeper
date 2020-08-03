@@ -43,9 +43,17 @@ public class Minesweeper {
         return (cellValues[row][column] == -1);
     }
 
+    public void unsealCell(int row, int column){
+        cellStates[row][column] = CellState.UNEXPOSED;
+    }
+
     public void exposeCell (int row, int column) {
         cellStates[row][column] = CellState.EXPOSED;
 
+    }
+
+    public void sealCell (int row, int column) {
+        cellStates[row][column] = CellState.SEALED;
     }
 
     public int createMines() {

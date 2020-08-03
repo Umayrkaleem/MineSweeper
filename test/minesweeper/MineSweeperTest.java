@@ -30,5 +30,17 @@ public class MineSweeperTest {
         assertEquals(CellState.EXPOSED, minesweeper.getCellState(0, 1));
     }
 
+    @Test
+    void sealAnUnsealedCell() {
+        minesweeper.sealCell(0, 1);
+        assertEquals(CellState.SEALED, minesweeper.getCellState(0, 1));
+    }
+
+    @Test
+    void unsealASealedCell() {
+        minesweeper.unsealCell(0, 1);
+        assertEquals(CellState.UNEXPOSED, minesweeper.getCellState(0, 1));
+    }
+
 
 }
