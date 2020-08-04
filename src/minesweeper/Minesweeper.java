@@ -1,9 +1,10 @@
 package minesweeper;
 
+import java.io.IOException;
 import java.util.Random;
+import java.util.Scanner;
 
 public class Minesweeper {
-
     private static int BOUNDS = 10;
     private static int nMINES = 10;
     private boolean gameStatus = Boolean.TRUE;
@@ -94,5 +95,49 @@ public class Minesweeper {
 
     public CellState getCellState (int row, int column) {
         return cellStates[row][column];
+    }
+    public Boolean isBeingPlayed(){
+        return gameStatus;
+    }
+    public void printBoardValues(){
+        for (int i = 0; i < BOUNDS; i++) {
+            for (int j = 0; j < BOUNDS; j++)
+                decidePrintFormat(i, j);
+            System.out.println("");
+        }
+    }
+
+    public void decidePrintFormat(int i, int j){
+        if (cellStates[i][j] == CellState.EXPOSED) {
+            System.out.print(String.format("%-5s%-5d|", "|", cellValues[i][j]));
+        } else if (cellStates[i][j] == CellState.UNEXPOSED) {
+            System.out.print(String.format("%-5s%-5s|", "|", "[]"));
+        } else {
+            System.out.print(String.format("%-5s%-5s|", "|", "Flag"));
+        }
+    }
+
+    public static void main(String args[]) throws IOException {
+        Minesweeper game = new Minesweeper();
+        Scanner scanner = new Scanner(System.in).useDelimiter("\n");
+
+        while (game.isBeingPlayed()){
+            game.printBoardValues();
+            System.out.println("Enter the X coordinate: ");
+            String xInput = scanner.next();
+
+            System.out.println("Enter the Y coordinate: ");
+            String yInput = scanner.next();
+
+            game.expose(Integer.parseInt(xInput), Integer.parseInt(yInput));
+        }
+
+        if(game.hasWon){
+            System.out.println("Game won");
+        }
+        else{
+            game.printBoardValues();
+            System.out.println("Game lost");
+        }
     }
 }
